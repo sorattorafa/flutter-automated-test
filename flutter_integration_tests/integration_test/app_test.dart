@@ -18,13 +18,18 @@ void main() {
       final Finder fab = find.byTooltip('Increment');
 
       // Emulate a tap on the floating action button.
+      for(var i = 0 ; i < 10; i++) {
+        await tester.tap(fab);
+        await tester.pumpAndSettle();
+      }
+
       await tester.tap(fab);
 
       // Trigger a frame.
       await tester.pumpAndSettle();
 
       // Verify the counter increments by 1.
-      expect(find.text('1'), findsOneWidget);
+      expect(find.text('11'), findsOneWidget);
     });
   });
 }
